@@ -22,6 +22,8 @@ posts = Post.all
   )
 end
 
+Post.find_or_create_by(title: "This is the readable message", body: "You can read this message unlike all of the other gibberish data we've seeded.")
+
 puts "Seed finshed"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
