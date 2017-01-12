@@ -22,8 +22,17 @@ posts = Post.all
   )
 end
 
+20.times do
+  Advertisement.create!(
+  title: RandomData.random_sentance,
+  body: RandomData.random_paragraph,
+  price: Random.rand(110)
+  )
+end
+
 Post.find_or_create_by(title: "This is the readable message", body: "You can read this message unlike all of the other gibberish data we've seeded.")
 
 puts "Seed finshed"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} advertisements created"
