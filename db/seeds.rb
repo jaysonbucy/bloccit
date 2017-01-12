@@ -24,9 +24,9 @@ end
 
 20.times do
   Advertisement.create!(
-  title: RandomData.random_sentance,
-  body: RandomData.random_paragraph,
-  price: Random.rand(110)
+    title: RandomData.random_sentance,
+    body: RandomData.random_paragraph,
+    price: Random.rand(110)
   )
 end
 
