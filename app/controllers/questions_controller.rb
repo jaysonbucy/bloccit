@@ -1,5 +1,10 @@
 class QuestionsController < ApplicationController
+  def question_params
+    params.require(:question).permit(:title, :body, :resolved)
+  end
+
   def index
+    @questions = Question.all
   end
 
   def new
@@ -8,9 +13,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new
-    @question.title = params.require(:question).permit(:title)
-    @question.body = params.require(:question).permit(:body)
-    @question.resolved = params.require(:question).permit(:resolved)
+    @question.assign_attributes(question_params)
 
     if @question.save
       flash[:notice] = "Question was saved."
@@ -30,23 +33,28 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    def update
-      @question = Question.find(params[:id])
-      @question.title = params.require(:question).permit(:title)
-      @question.body = params.require(:question).permit(:body)
-      @question.resolved = params.require(:question).permit(:resolved)
+    @question = Question.find(params[:id])
+    @question.assign_attributes(question_params)
 
-      if @question.save
-        flash[:notice] = "Your question was updated."
-        redirect_to @question
-      else
-        flash.now[:alert] = "There was an error saving the question. Please try again."
-        render :edit
-      end
+    if @question.save
+      flash[:notice] = "Your question was updated."
+      redirect_to @question
+    else
+      flash.now[:alert] = "There was an error saving the question. Please try again."
+      render :edit
     end
   end
 
   def destroy
+    @question = Question.find(params[:id])
+
+    if @question.destroy
+      flash[:notice] = "\"#{@question.title}\" was deleted successfully."
+      redirect_to questions_path
+    else
+      flash.now[:alert] = "There was an error deleting the question."
+      render :show
+    end
   end
 
 end

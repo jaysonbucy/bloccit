@@ -22,6 +22,14 @@ posts = Post.all
   )
 end
 
+20.times do
+  Question.create!(
+    title: RandomData.random_sentance,
+    body: RandomData.random_paragraph,
+    resolved: false
+  )
+end
+
 Post.find_or_create_by(title: "This is the readable message", body: "You can read this message unlike all of the other gibberish data we've seeded.")
 
 puts "Seed finshed"

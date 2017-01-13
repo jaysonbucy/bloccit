@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-  let(:my_question) { Question.create!(title: RandomData.random_sentance, body: RandomData.random_paragraph, resolved: false) }
+  let!(:my_question) { Question.create!(title: RandomData.random_sentance, body: RandomData.random_paragraph, resolved: false) }
 
   describe "GET new" do
     it "returns http success" do
@@ -62,7 +62,7 @@ RSpec.describe QuestionsController, type: :controller do
     it "assigns question to be updated to @question" do
       get :edit, {id: my_question.id}
       question_instance = assigns(:question)
-      
+
       expect(question_instance.id).to eq(my_question.id)
       expect(question_instance.title).to eq(my_question.title)
       expect(question_instance.body).to eq(my_question.body)
@@ -91,5 +91,18 @@ RSpec.describe QuestionsController, type: :controller do
       expect(response).to redirect_to(my_question)
     end
   end
+
+  describe "DELETE destroy" do
+  it "deletes the question" do
+    delete :destroy, {id: my_question.id}
+    count = Question.where({id: my_question.id}).size
+    expect(count).to eq 0
+  end
+
+  it "redirects to questions index" do
+    delete :destroy, {id: my_question.id}
+    expect(response).to redirect_to questions_path
+  end
+end
 
 end

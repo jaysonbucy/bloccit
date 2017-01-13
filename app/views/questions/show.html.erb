@@ -3,6 +3,13 @@
 <div class="row">
   <div class="col-md-8">
     <p><%= @question.body %></p>
+    <p>Is the issue resolved?
+      <% if @question.resolved? %>
+        <b>Yes</b>
+      <% else %>
+        <b>No</b>
+      <% end %>
+    </p>
   </div>
   <div class="col-md-4">
     <%= link_to "Edit", edit_question_path(@question), class: 'btn btn-success' %>
