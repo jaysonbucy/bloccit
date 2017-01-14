@@ -1,8 +1,4 @@
 class QuestionsController < ApplicationController
-  def question_params
-    params.require(:question).permit(:title, :body, :resolved)
-  end
-
   def index
     @questions = Question.all
   end
@@ -55,6 +51,11 @@ class QuestionsController < ApplicationController
       flash.now[:alert] = "There was an error deleting the question."
       render :show
     end
+  end
+
+  private
+  def question_params
+    params.require(:question).permit(:title, :body, :resolved)
   end
 
 end
