@@ -7,8 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
 
+15.times do
+  Topic.create!(
+    name: RandomData.random_sentance,
+    description: RandomData.random_paragraph
+  )
+end
+topics = Topic.all
+
 50.times do
   Post.create!(
+    topic: topics.sample,
     title: RandomData.random_sentance,
     body: RandomData.random_paragraph
   )
@@ -25,5 +34,6 @@ end
 Post.find_or_create_by(title: "This is the readable message", body: "You can read this message unlike all of the other gibberish data we've seeded.")
 
 puts "Seed finshed"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
