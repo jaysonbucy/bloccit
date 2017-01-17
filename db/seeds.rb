@@ -24,6 +24,14 @@ topics = Topic.all
 end
 posts = Post.all
 
+10.times do
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentance,
+    body: RandomData.random_paragraph
+  )
+end
+
 100.times do
   Comment.create!(
     post: posts.sample,
@@ -36,4 +44,5 @@ Post.find_or_create_by(title: "This is the readable message", body: "You can rea
 puts "Seed finshed"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
+puts "#{SponsoredPost.count} sponsored posts created" 
 puts "#{Comment.count} comments created"
