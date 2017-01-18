@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
-  let(:my_topic) { Topic.create!(name: RandomData.random_sentance, description: RandomData.random_paragraph) }
+  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
 
   describe "GET index" do
     it "returns http success" do
@@ -51,16 +51,16 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of topics by 1" do
-      expect{ post :create, {topic: {name: RandomData.random_sentance, description: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
+      expect{ post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
     end
 
     it "assigns Topic.last to @topic" do
-      post :create, {topic: {name: RandomData.random_sentance, description: RandomData.random_paragraph}}
+      post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}
       expect(assigns(:topic)).to eq Topic.last
     end
 
     it "redirects to the new topic" do
-      post :create, {topic: {name: RandomData.random_sentance, description: RandomData.random_paragraph}}
+      post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}
       expect(response).to redirect_to Topic.last
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "PUT update" do
     it "updates topic with expected attributes" do
-      new_name = RandomData.random_sentance
+      new_name = RandomData.random_sentence
       new_description = RandomData.random_paragraph
 
       put :update, id: my_topic.id, topic: { name: new_name, description: new_description }
@@ -100,7 +100,7 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     it "redirects to the updated topic" do
-      new_name = RandomData.random_sentance
+      new_name = RandomData.random_sentence
       new_description = RandomData.random_paragraph
 
       put :update, id: my_topic.id, topic: { name: new_name, description: new_description }
