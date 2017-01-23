@@ -272,4 +272,8 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
   end
+
+  context "moderator user" do
+
+  end
 end
