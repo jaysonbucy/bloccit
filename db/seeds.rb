@@ -7,6 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
 
+5.times do
+  User.create!(
+    name: RandomData.random_name,
+    email: RandomData.random_email,
+    password: RandomData.random_sentence
+  )
+end
+users = User.all
+
 15.times do
   Topic.create!(
     name: RandomData.random_sentence,
@@ -17,6 +26,7 @@ topics = Topic.all
 
 50.times do
   Post.create!(
+    user:users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -31,9 +41,15 @@ posts = Post.all
   )
 end
 
-Post.find_or_create_by(title: "This is the readable message", body: "You can read this message unlike all of the other gibberish data we've seeded.")
+user = User.first
+user.update_attributes!(
+  name: "Jayson Bucy",
+  email: "jayson.h.b@gmail.com",
+  password: "password"
+)
 
 puts "Seed finshed"
+puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
