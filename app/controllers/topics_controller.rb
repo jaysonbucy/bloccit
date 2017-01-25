@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   end
 
   def new
+    unauthorized_response if current_user.moderator?
     @topic = Topic.new
   end
 
@@ -60,10 +61,13 @@ class TopicsController < ApplicationController
   end
 
   def authorize_user
-    unless current_user.admin?
-      flash[:alert] = "You must be an admin to do that."
-      redirect_to topics_path
+    unless current_user.admin? || current_user.moderator?
+      unauthorized_response
     end
   end
 
+  def unauthorized_response
+    flash[:alert] = "You must be an admin to do that."
+    redirect_to topics_path
+  end
 end

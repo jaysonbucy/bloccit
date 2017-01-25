@@ -160,6 +160,14 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "DELETE destroy" do
+      # context "moderator user"
+      #   describe "DELETE destroy" do
+      #     it "returns http redirect" do
+      #       delete :destroy, {id: my_post.id}
+      #       expect(response).to redirect_to(posts_path)
+      #     end
+      #   end
+      # end
       it "deletes the post" do
         delete :destroy, topic_id: my_topic.id, id: my_post.id
         count = Post.where({id: my_post.id}).size
