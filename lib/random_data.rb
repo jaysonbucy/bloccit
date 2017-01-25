@@ -23,7 +23,6 @@ module RandomData
     rand(3..8).times do
       strings << random_word
     end
-
     sentence = strings.join(" ")
     sentence.capitalize << "."
   end
