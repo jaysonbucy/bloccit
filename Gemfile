@@ -5,6 +5,7 @@
  gem 'bootstrap-sass'
  gem 'bcrypt'
  gem 'figaro', '1.0'
+ gem 'factory_girl_rails', '~> 4.0'
 
  group :production do
    gem 'pg'
