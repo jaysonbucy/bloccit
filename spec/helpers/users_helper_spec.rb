@@ -11,5 +11,11 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let :topic { create( :topic ) }
+  let :user { create( :user ) }
+  let :post { create( :post, topic: topic, user: user ) }
+
+  context "lists favorite posts" do
+
+  end
 end
