@@ -1,14 +1,14 @@
 module UsersHelper
   def has_posts(user)
-    current_user && (current_user.posts.count > 0)
+    user && (user.posts.count > 0)
   end
 
   def has_comments(user)
-    current_user && (current_user.comments.count > 0)
+    user && (user.comments.count > 0)
   end
 
   def has_favorites(user)
-    current_user && (current_user.favorites.count > 0)
+    user && (user.favorites.count > 0)
   end
 
   def favorites_gravatar(id)
